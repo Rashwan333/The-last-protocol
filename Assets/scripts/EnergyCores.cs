@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class chips : MonoBehaviour
+public class EnergyCores : MonoBehaviour
 {
     public static int score = 0;
-    public int targetChips = 6;
+    public int targetCores = 6;
+    public TMP_Text coreCounterText;
 
     public AudioClip collectSound;
     public float soundVolume = 1f;
@@ -16,11 +18,22 @@ public class chips : MonoBehaviour
     {
         score = 0;
         CoreRotator = new Vector3(0, 0, 1);
+        UpdateCounterText();
+
     }
 
     void Update()
     {
         transform.Rotate(CoreRotator);
+        UpdateCounterText();
+    }
+
+    void UpdateCounterText()
+    {
+        if (coreCounterText != null)
+        {
+            coreCounterText.text = "Chips: " + score + "/" + targetCores;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,10 +41,13 @@ public class chips : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             score++;
-
             Debug.Log("Score: " + score);
 
-            // Play coin collection sound
+            if (coreCounterText != null)
+            {
+                coreCounterText.text = "Chips: " + score + "/" + targetCores;
+            }
+
             if (collectSound != null)
             {
                 AudioSource.PlayClipAtPoint(
@@ -41,7 +57,7 @@ public class chips : MonoBehaviour
                 );
             }
 
-            if (score >= targetChips)
+            if (score >= targetCores)
             {
                 Debug.Log("You Win!");
             }

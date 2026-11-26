@@ -5,18 +5,19 @@ using UnityEngine;
 public class zombies : MonoBehaviour
 {
     public float radius = 6f;
+
+
     public float speed = 1.5f;
     public float turnSpeed = 3f;
     public float waitTime = 2f;
     public float pushDistance = 3f;
 
-    [Header("Zombie Sound")]
     public AudioClip zombieSound;
     public float minVolume = 0.1f;
     public float maxVolume = 1f;
-    public float dangerDistance = 3f;
+    public float dangerDistance = 6f;
 
-    [Header("Player")]
+
     public Transform player;
 
     Vector3 center;

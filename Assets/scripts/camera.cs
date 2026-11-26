@@ -19,7 +19,6 @@ public class camera : MonoBehaviour
 
     void Update()
     {
-        // forward (0,0,1) , distance 6, vector3.up (0,1,0) , height 4
         transform.position = target.position - target.forward * distance + Vector3.up * height;
         transform.LookAt(target.position + Vector3.up * lookHeight);
     }
